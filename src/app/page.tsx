@@ -53,8 +53,12 @@ const HomePage = () => {
 
   return (
     <main className={styles.main} onKeyDown={handleClickOrPressSpace}>
-      <button className={styles["toggle-theme"]} onClick={handleToggleTheme}>
-        {theme === "dark" ? <Icon.Sun stroke="#ffb200" /> : <Icon.Moon />}
+      <button
+        className={styles["toggle-theme"]}
+        onClick={handleToggleTheme}
+        title={theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"}
+      >
+        {theme === "dark" ? <Icon.Sun stroke="#ffb200" /> : <Icon.Moon stroke="#02a0fc" />}
       </button>
       <div className={styles.content}>
         <h3 className={styles.title}>Frase desmotivacional do dia:</h3>
