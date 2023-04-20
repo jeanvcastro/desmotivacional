@@ -60,12 +60,14 @@ const HomePage = () => {
         <h3 className={styles.title}>Frase desmotivacional do dia:</h3>
         <h2 className={[styles.phrase, notoSerif.className].join(" ")}>
           {phrase}
+          <br />
           <button className={styles.copy} onClick={handleCopy}>
-            <Icon.Copy />
+            <Icon.Copy /> Copiar
           </button>
         </h2>
         <div className={styles.widget}>
           <span>Clique aqui ou pressione</span>
+
           <button className={styles.space} onClick={handleClickOrPressSpace}>
             Espaço
           </button>

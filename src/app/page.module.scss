@@ -46,7 +46,7 @@ $white: #fff;
 
     .phrase {
       padding: 0 6rem;
-      font-size: 4.625rem;
+      font-size: 3.625rem;
       font-weight: 600;
       color: $dark;
 
@@ -66,8 +66,10 @@ $white: #fff;
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
       height: 100%;
-      margin-left: 1.5rem;
       color: $dark;
     }
 
