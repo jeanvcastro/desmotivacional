@@ -1,0 +1,161 @@
+$black: #000;
+$white: #fff;
+
+@mixin reset-button() {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+@mixin page($gray100, $gray200, $gray300, $dark, $light) {
+  .main {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: $light;
+  }
+
+  .toggle-theme {
+    @include reset-button();
+    position: fixed;
+    right: 1.5rem;
+    top: 1.25rem;
+  }
+
+  .content {
+    align-self: center;
+    text-align: center;
+
+    .title {
+      margin-bottom: 1rem;
+      padding: 0.875rem;
+      font-size: 1.875rem;
+      font-weight: 500;
+      color: $gray300;
+
+      @media (max-width: 768px) {
+        font-size: 1.25rem;
+      }
+    }
+
+    .phrase {
+      padding: 0 6rem;
+      font-size: 4.625rem;
+      font-weight: 600;
+      color: $dark;
+
+      @media (max-width: 768px) {
+        padding: 0 3rem;
+        font-size: 2.75rem;
+      }
+
+      @media (max-width: 576px) {
+        padding: 0 1.75rem;
+        font-size: 1.75rem;
+      }
+    }
+
+    .copy {
+      @include reset-button();
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin-left: 1.5rem;
+      color: $dark;
+    }
+
+    .widget {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 4rem;
+      font-size: 1rem;
+      color: $gray300;
+      cursor: pointer;
+      user-select: none;
+
+      @media (max-width: 576px) {
+        flex-wrap: wrap;
+        span {
+          flex-basis: 100%;
+        }
+      }
+    }
+
+    .space {
+      @include reset-button();
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 32px;
+      background-color: $gray100;
+      border-right: 4px inset $gray200;
+      border-bottom: 4px inset $gray300;
+      border-radius: 4px;
+      text-transform: uppercase;
+      color: $black;
+      user-select: none;
+
+      &:active {
+        border-right-width: 3px;
+        border-bottom-width: 3px;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap-reverse;
+    padding: 1rem 0;
+    font-size: 1rem;
+    color: $dark;
+
+    a {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  .footer-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 360px) {
+      flex-basis: 100%;
+    }
+  }
+
+  .facebook {
+    color: #1877f2;
+  }
+
+  .twitter {
+    color: #1d9bf0;
+  }
+
+  .github {
+    color: $dark;
+  }
+}
+
+// Theme
+
+[data-theme="dark"] {
+  @include page(#f2f2f2, #c3c3c3, #999, #fff, #111);
+}
+
+[data-theme="light"] {
+  @include page(#f2f2f2, #c3c3c3, #999, #111, #fff);
+}

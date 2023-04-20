@@ -1,102 +1,116 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client";
+import { ThemeProvider, useThemeContext } from "@/context/ThemeContext";
+import { PHRASES } from "@/helpers/phrases";
+import { Noto_Serif } from "next/font/google";
+import { useEffect, useState } from "react";
+import * as Icon from "react-feather";
 
-const inter = Inter({ subsets: ['latin'] })
+import { TostProvider } from "@/context/ToastContext";
+import { toast } from "react-toastify";
+import styles from "./page.module.scss";
 
-export default function Home() {
+const notoSerif = Noto_Serif({ weight: "400", subsets: ["latin"] });
+
+const getRandomPhrase = () => {
+  const index = Math.floor(Math.random() * PHRASES.length);
+  return PHRASES[index];
+};
+
+const HomePage = () => {
+  const [phrase, setPhrase] = useState("");
+  const { theme, setTheme } = useThemeContext();
+
+  const handleClickOrPressSpace = (event: { type: string; code?: string }) => {
+    if (event.type === "click" || event?.code == "Space") {
+      setPhrase(getRandomPhrase());
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleClickOrPressSpace);
+    setPhrase(getRandomPhrase());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleToggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(phrase)
+      .then(() => {
+        toast.info("Copiado!", {
+          toastId: "copy",
+        });
+      })
+      .catch((_) => {});
+  };
+
+  if (!phrase) {
+    return <div></div>;
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
+    <main className={styles.main} onKeyDown={handleClickOrPressSpace}>
+      <button className={styles["toggle-theme"]} onClick={handleToggleTheme}>
+        {theme === "dark" ? <Icon.Sun stroke="#ffb200" /> : <Icon.Moon />}
+      </button>
+      <div className={styles.content}>
+        <h3 className={styles.title}>Frase desmotivacional do dia:</h3>
+        <h2 className={[styles.phrase, notoSerif.className].join(" ")}>
+          {phrase}
+          <button className={styles.copy} onClick={handleCopy}>
+            <Icon.Copy />
+          </button>
+        </h2>
+        <div className={styles.widget}>
+          <span>Clique aqui ou pressione</span>
+          <button className={styles.space} onClick={handleClickOrPressSpace}>
+            Espaço
+          </button>
+          <span>para gerar uma nova frase</span>
+        </div>
+      </div>
+      <div className={styles.footer}>
+        <div className={styles["footer-item"]}>
+          <span>Compartilhar:</span>
           <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdesmotivacional.dev&t=Frase%20desmotivacional%20do%20dia"
             target="_blank"
             rel="noopener noreferrer"
+            title="Share on Facebook"
+            className={styles.facebook}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
+            <Icon.Facebook />
+          </a>
+          <a
+            href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fdesmotivacional.dev&text=Frase%20desmotivacional%20do%20dia%3A%20https%3A%2F%2Fdesmotivacional.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Tweet"
+            className={styles.twitter}
+          >
+            <Icon.Twitter />
+          </a>
+        </div>
+        <div className={styles["footer-item"]}>
+          <span>Source:</span>
+          <a href="" target="_blank" rel="noopener noreferrer" title="View source on Github" className={styles.github}>
+            <Icon.GitHub />
           </a>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
+};
+
+export default function Home() {
+  return (
+    <ThemeProvider>
+      <TostProvider>
+        <HomePage />
+      </TostProvider>
+    </ThemeProvider>
+  );
 }
