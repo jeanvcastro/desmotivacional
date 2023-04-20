@@ -96,7 +96,13 @@ const HomePage = () => {
         </div>
         <div className={styles["footer-item"]}>
           <span>Source:</span>
-          <a href="" target="_blank" rel="noopener noreferrer" title="View source on Github" className={styles.github}>
+          <a
+            href="https://github.com/jeanvcastro/desmotivacional"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View source on Github"
+            className={styles.github}
+          >
             <Icon.GitHub />
           </a>
         </div>
