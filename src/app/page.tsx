@@ -76,7 +76,7 @@ const HomePage = () => {
         <div className={styles["footer-item"]}>
           <span>Compartilhar:</span>
           <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdesmotivacional.dev&t=Frase%20desmotivacional%20do%20dia"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdesmotivacional.com&t=Frase%20desmotivacional%20do%20dia"
             target="_blank"
             rel="noopener noreferrer"
             title="Share on Facebook"
@@ -85,7 +85,7 @@ const HomePage = () => {
             <Icon.Facebook />
           </a>
           <a
-            href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fdesmotivacional.dev&text=Frase%20desmotivacional%20do%20dia%3A%20https%3A%2F%2Fdesmotivacional.dev"
+            href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fdesmotivacional.com&text=Frase%20desmotivacional%20do%20dia%3A%20https%3A%2F%2Fdesmotivacional.com"
             target="_blank"
             rel="noopener noreferrer"
             title="Tweet"

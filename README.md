@@ -1,6 +1,6 @@
-# desmotivacional.dev
+# desmotivacional.com
 
-Repositório do site [desmotivacional.dev](https://desmotivacional.dev)
+Repositório do site [desmotivacional.com](https://desmotivacional.com)
 
 O objetivo é ajudar desenvolvedores lidar com seus fracassos com uma dose de humor.
 
