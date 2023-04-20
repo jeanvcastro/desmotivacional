@@ -7,22 +7,18 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Frases Desmotivacionais para Desenvolvedores",
   description: 'Frases "desmotivacionais" para desenvolvedores',
+  keywords: "frases desmotivacionais, desenvolvedores, gerador de frases, humor para programadores",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
       <Head>
-        <title>Frases Desmotivacionais para Desenvolvedores - Gerador de Frases</title>
-        <meta
-          name="description"
-          content="O Gerador de Frases Desmotivacionais para Desenvolvedores é a ferramenta perfeita para dar uma pausa no seu trabalho de programação. Divirta-se com as nossas frases engraçadas e desmotivadoras!"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="keywords"
-          content="frases desmotivacionais, desenvolvedores, gerador de frases, humor para programadores"
-        />
+        <meta property="og:title" content={metadata.title} />
+        <meta property="og:description" content="A friendly reminder to all Developers, Designers, CEO's" />
+        <meta property="og:url" content="https://desmotivacional.com" />
+        <meta property="og:site_name" content="Frases Desmotivacionais para Desenvolvedores" />
+        <meta property="og:type" content="website" />
       </Head>
       <body className={inter.className}>{children}</body>
     </html>
